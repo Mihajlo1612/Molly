@@ -264,7 +264,7 @@ ul { list-style: none; }
 
 .transform-track {
     margin-top: 48px;
-    overflow: hidden;              /* traka izlazi van ekrana, bez scrollbara */
+    overflow: hidden;              
 }
 
 .transform-row {
@@ -272,15 +272,12 @@ ul { list-style: none; }
     width: max-content;
     animation: marquee 35s linear infinite;
 }
-/* pauza dok je miš nad trakom */
-.transform-track:hover .transform-row {
-    animation-play-state: paused;
-}
+
 
 .transform-card {
     flex: 0 0 344px;
     height: 383px;
-    margin-right: 40px;            /* razmak kao margina — bitno za tačnu -50% petlju */
+    margin-right: 40px;            
     border-radius: 12px;
     overflow: hidden;
 }
