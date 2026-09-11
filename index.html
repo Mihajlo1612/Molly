@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/styles.css" />
     <title>Molly - Salon za pse</title>
   </head>
+
   <body class="intro-lock">
     <div class="intro-screen" id="introScreen">
       <img
@@ -26,102 +27,644 @@
         alt=""
       />
     </div>
-    <header class="hero" id="pocetna">
-      <nav class="nav">
-        <a href="#pocetna" class="nav-brand">
-          <img src="assets/images/logo.png" alt="Salon za pse Molly logo" />
-          <span>Salon za pse Molly</span>
-        </a>
-        <div class="nav-right">
-          <ul class="nav-links">
-            <li><a href="#pocetna">Pocetna</a></li>
-            <li><a href="#transformacije">Slike</a></li>
-            <li><a href="#usluge">Usluge</a></li>
-            <li><a href="#saveti">Edukacija</a></li>
-            <li><a href="#o-nama">O nama</a></li>
-          </ul>
-          <a class="btn btn-white" href="#kontakt">Zakaži termin</a>
+
+    <div class="page-wrap" id="pageWrap">
+      <nav class="rail" id="rail">
+        <div class="rail-track">
+          <div class="rail-fill" id="railFill"></div>
+        </div>
+        <div class="rail-links" id="railLinks">
+          <a class="rail-link" href="#pocetna">Početna</a>
+          <a class="rail-link" href="#transformacije">Transformacije</a>
+          <a class="rail-link" href="#usluge">Usluge</a>
+          <a class="rail-link" href="#saveti">Edukacija</a>
+          <a class="rail-link" href="#o-nama">O nama</a>
         </div>
       </nav>
 
-      <div class="hero-inner">
-        <div class="hero-left">
-          <div class="hero-text">
-            <h1>Profesionalno šišanje i nega pasa</h1>
-            <p>
-              Verujem da svaki pas zaslužuje da se prema njemu odnosi s
-              ljubavlju, strpljenjem i pažnjom kao da je moj. Zato u salonu
-              Molly svaki ljubimac dobija negu koja mu odgovara, da izađe
-              nasmejan, uredan i opušten.
-            </p>
-          </div>
-          <div class="hero-actions">
-            <a class="btn btn-white" href="#kontakt">Zakaži termin</a>
-            <a class="btn btn-ghost" href="#kontakt">Kontakt</a>
-          </div>
-          <div class="hero-stats">
-            <div class="stat">
-              <div class="stat-value">
-                <span class="stat-num" data-target="3000">0</span
-                ><span class="plus">+</span>
-              </div>
-              <div class="stat-label">Zadovoljnih pasa</div>
+      <div class="page-content">
+        <header class="hero" id="pocetna" data-rail="light">
+          <nav class="nav">
+            <a href="#pocetna" class="nav-brand">
+              <img src="assets/images/logo.png" alt="Salon za pse Molly logo" />
+              <span>Salon za pse Molly</span>
+            </a>
+            <div class="nav-right">
+              <ul class="nav-links">
+                <li><a href="#pocetna">Pocetna</a></li>
+                <li><a href="#transformacije">Slike</a></li>
+                <li><a href="#usluge">Usluge</a></li>
+                <li><a href="#saveti">Edukacija</a></li>
+                <li><a href="#o-nama">O nama</a></li>
+              </ul>
+              <a class="btn btn-white-magnetic" href="#kontakt"
+                >Zakaži termin</a
+              >
             </div>
-            <div class="stat-divider"></div>
-            <div class="stat">
-              <div class="stat-value">
-                <span class="stat-num" data-target="100">0</span
-                ><span class="pct">%</span>
+          </nav>
+
+          <div class="hero-inner">
+            <div class="hero-left">
+              <div class="hero-text">
+                <h1 id="heroTitle" data-anim="slovo-skok" data-split="slovo">
+                  Profesionalno šišanje i nega pasa
+                </h1>
+                <p>
+                  Verujem da svaki pas zaslužuje da se prema njemu odnosi s
+                  ljubavlju, strpljenjem i pažnjom kao da je moj. Zato u salonu
+                  Molly svaki ljubimac dobija negu koja mu odgovara, da izađe
+                  nasmejan, uredan i opušten.
+                </p>
               </div>
-              <div class="stat-label">Posvećenost svakom ljubimcu</div>
+              <div class="hero-actions">
+                <a class="btn btn-white magnetic" href="#kontakt"
+                  >Zakaži termin</a
+                >
+                <a class="btn btn-ghost magnetic" href="#kontakt">Kontakt</a>
+              </div>
+              <div class="hero-stats">
+                <div class="stat">
+                  <div class="stat-value">
+                    <span class="stat-num" data-target="3000">0</span
+                    ><span class="plus">+</span>
+                  </div>
+                  <div class="stat-label">Zadovoljnih pasa</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                  <div class="stat-value">
+                    <span class="stat-num" data-target="100">0</span
+                    ><span class="pct">%</span>
+                  </div>
+                  <div class="stat-label">Posvećenost svakom ljubimcu</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                  <div class="stat-value">
+                    <span class="stat-num" data-target="4">0</span>
+                  </div>
+                  <div class="stat-label">godine iskustva</div>
+                </div>
+              </div>
             </div>
-            <div class="stat-divider"></div>
-            <div class="stat">
-              <div class="stat-value">
-                <span class="stat-num" data-target="4">0</span>
-              </div>
-              <div class="stat-label">godine iskustva</div>
+            <div class="hero-photo">
+              <img src="assets/images/hero.png" alt="Mops uziva u kupanju" />
             </div>
           </div>
-        </div>
-        <div class="hero-photo">
-          <img src="assets/images/hero.png" alt="Mops uziva u kupanju" />
-        </div>
-      </div>
-    </header>
+        </header>
 
         <!-- ================= TRANSFORMACIJE ================= -->
-    <section class="transformacije" id="transformacije">
-        <div class="section-head">
+        <section class="transformacije" id="transformacije">
+          <div class="section-head">
             <span class="kicker">Transformacije</span>
-            <h2>Pre tretmana → Posle tretmana</h2>
-        </div>
+            <h2 data-anim="zavesa" data-split="rec">
+              Pre tretmana → Posle tretmana
+            </h2>
+          </div>
 
-                <div class="transform-track">
+          <div class="transform-track">
             <div class="transform-row">
-                <!-- original -->
-                <div class="transform-card"><img src="assets/images/transformacija-1.jpg" alt="Jorkširski terijer posle šišanja"></div>
-                <div class="transform-card"><img src="assets/images/transformacija-2.jpg" alt="Crna pudla posle šišanja"></div>
-                <div class="transform-card"><img src="assets/images/transformacija-3.jpg" alt="Braon pudla posle šišanja"></div>
-                <div class="transform-card"><img src="assets/images/transformacija-4.jpg" alt="Pas pre i posle tretmana"></div>
-                <div class="transform-card"><img src="assets/images/transformacija-5.jpg" alt="Pas pre i posle tretmana"></div>
-                <div class="transform-card"><img src="assets/images/transformacija-6.jpg" alt="Pas pre i posle tretmana"></div>
-                <div class="transform-card"><img src="assets/images/transformacija-7.jpg" alt="Pas pre i posle tretmana"></div>
-                <!-- duplikat za beskonačnu petlju -->
-                <div class="transform-card" aria-hidden="true"><img src="assets/images/transformacija-1.jpg" alt=""></div>
-                <div class="transform-card" aria-hidden="true"><img src="assets/images/transformacija-2.jpg" alt=""></div>
-                <div class="transform-card" aria-hidden="true"><img src="assets/images/transformacija-3.jpg" alt=""></div>
-                <div class="transform-card" aria-hidden="true"><img src="assets/images/transformacija-4.jpg" alt=""></div>
-                <div class="transform-card" aria-hidden="true"><img src="assets/images/transformacija-5.jpg" alt=""></div>
-                <div class="transform-card" aria-hidden="true"><img src="assets/images/transformacija-6.jpg" alt=""></div>
-                <div class="transform-card" aria-hidden="true"><img src="assets/images/transformacija-7.jpg" alt=""></div>
+              <!-- original -->
+              <div class="transform-card">
+                <img
+                  src="assets/images/transformacija-1.jpg"
+                  alt="Jorkširski terijer posle šišanja"
+                />
+              </div>
+              <div class="transform-card">
+                <img
+                  src="assets/images/transformacija-2.jpg"
+                  alt="Crna pudla posle šišanja"
+                />
+              </div>
+              <div class="transform-card">
+                <img
+                  src="assets/images/transformacija-3.jpg"
+                  alt="Braon pudla posle šišanja"
+                />
+              </div>
+              <div class="transform-card">
+                <img
+                  src="assets/images/transformacija-4.jpg"
+                  alt="Pas pre i posle tretmana"
+                />
+              </div>
+              <div class="transform-card">
+                <img
+                  src="assets/images/transformacija-5.jpg"
+                  alt="Pas pre i posle tretmana"
+                />
+              </div>
+              <div class="transform-card">
+                <img
+                  src="assets/images/transformacija-6.jpg"
+                  alt="Pas pre i posle tretmana"
+                />
+              </div>
+              <div class="transform-card">
+                <img
+                  src="assets/images/transformacija-7.jpg"
+                  alt="Pas pre i posle tretmana"
+                />
+              </div>
+              <!-- duplikat za beskonačnu petlju -->
+              <div class="transform-card" aria-hidden="true">
+                <img src="assets/images/transformacija-1.jpg" alt="" />
+              </div>
+              <div class="transform-card" aria-hidden="true">
+                <img src="assets/images/transformacija-2.jpg" alt="" />
+              </div>
+              <div class="transform-card" aria-hidden="true">
+                <img src="assets/images/transformacija-3.jpg" alt="" />
+              </div>
+              <div class="transform-card" aria-hidden="true">
+                <img src="assets/images/transformacija-4.jpg" alt="" />
+              </div>
+              <div class="transform-card" aria-hidden="true">
+                <img src="assets/images/transformacija-5.jpg" alt="" />
+              </div>
+              <div class="transform-card" aria-hidden="true">
+                <img src="assets/images/transformacija-6.jpg" alt="" />
+              </div>
+              <div class="transform-card" aria-hidden="true">
+                <img src="assets/images/transformacija-7.jpg" alt="" />
+              </div>
             </div>
+          </div>
+
+          <div class="section-cta">
+            <a class="btn btn-pink" href="#kontakt">Zakaži termin</a>
+          </div>
+        </section>
+
+        <!-- ================= USLUGE ================= -->
+        <section class="usluge" id="usluge">
+          <div class="section-head">
+            <span class="kicker">Naše usluge</span>
+            <h2 data-anim="slovo-skok" data-split="slovo">
+              Profesionalna nega prilagođena<br />svakom ljubimcu
+            </h2>
+            <p class="section-sub">
+              Nudim kompletnu negu za higijenu, zdravlje i lep izgled vašeg psa.
+              Svaki tretman radim sa pažnjom, strpljenjem i ljubavlju, jer znam
+              koliko vam je ljubimac važan.
+            </p>
+          </div>
+
+          <div class="usluge-pin">
+            <div class="usluge-stack">
+              <article class="usluga">
+                <div class="usluga-photo">
+                  <img
+                    src="assets/images/usluga-kupanje.jpg"
+                    alt="Kupanje psa u salonu"
+                  />
+                </div>
+                <div class="usluga-content">
+                  <span class="usluga-broj">1</span>
+                  <h3>Kupanje pasa</h3>
+                  <p>
+                    Kupanje psa radim šamponima prilagođenim vrsti dlake i
+                    osetljivosti kože, tako da nega bude nežna ali temeljna.
+                    Ljubimac izlazi čist, mirisan i prijatno opušten, bez stresa
+                    i žurbe. Pratim kako se pas oseća tokom celog tretmana i
+                    prilagođavam tempo njemu, jer svaki pas je drugačiji i
+                    zaslužuje da mu bude prijatno.
+                  </p>
+                </div>
+              </article>
+
+              <article class="usluga flip">
+                <div class="usluga-photo">
+                  <img
+                    src="assets/images/usluga-sisanje.jpg"
+                    alt="Šišanje psa makazama"
+                  />
+                </div>
+                <div class="usluga-content">
+                  <span class="usluga-broj">2</span>
+                  <h3>Šišanje pasa</h3>
+                  <p>
+                    Šišanje radim po rasnom standardu ili po želji vlasnika, u
+                    zavisnosti od toga šta vam više odgovara. Zajedno biramo
+                    frizuru koja najbolje odgovara tipu dlake i karakteru vašeg
+                    psa, jer nije svaki stil za svakog ljubimca. Kroz razgovor i
+                    savet dolazimo do rešenja koje mu paše i koje je lako
+                    održavati kod kuće. Rezultat je uvek uredan i negovan pas,
+                    doteran na način koji mu zaista odgovara.
+                  </p>
+                </div>
+              </article>
+
+              <article class="usluga">
+                <div class="usluga-photo">
+                  <img
+                    src="assets/images/usluga-furminiranje.jpg"
+                    alt="Furminiranje pseće dlake"
+                  />
+                </div>
+                <div class="usluga-content">
+                  <span class="usluga-broj">3</span>
+                  <h3>Furminiranje</h3>
+                  <p>
+                    Furminiranje je tretman koji pomaže da se ukloni podlaka i
+                    višak dlake koji inače završava po celoj kući. Poseban alat
+                    i tehnika omogućavaju da se dlaka temeljno očisti, a da koža
+                    i gornji sloj dlake ostanu netaknuti. Pas se oseća
+                    rasterećeno, a rezultat primetite već nakon prvog tretmana,
+                    manje dlakanja i sjajniju dlaku.
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= KOMPLETNA NEGA (baner) ================= -->
+        <section class="nega-baner">
+          <div class="nega-box">
+            <div class="nega-text">
+              <h2 data-anim="slovo-skok" data-split="slovo">
+                Kompletna<br />nega pasa
+              </h2>
+              <p>
+                Kompletna nega objedinjuje sve što je vašem psu potrebno u jednoj poseti, kupanje, šišanje i furminiranje, prilagođeno njegovoj dlaci i potrebama. Umesto da tražite više termina, sve rešavamo odjednom, mirno i bez žurbe. Pas izlazi čist, uredan i rasterećen, a vi dobijate jednostavnost i sigurnost da je sve obavljeno na jednom mestu.
+              </p>
+              <a class="btn btn-white" href="#kontakt">Zakaži termin</a>
+            </div>
+            <div class="nega-photo">
+              <img
+                src="assets/images/pas-u-peskiru.jpg"
+                alt="Pas u peškiru posle kupanja"
+              />
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= KAKO IZGLEDA NEGA ================= -->
+        <section class="proces" id="saveti">
+          <div class="proces-inner">
+            <h2 data-anim="zavesa" data-split="rec">
+              Kako izgleda nega vašeg ljubimca?
+            </h2>
+            <p>
+              Kada dođete, pre svega se upoznamo, i sa vama i sa vašim psom.
+              Volim da čujem kakav je po prirodi, da li je razigran i pun
+              energije ili više smiren i oprezan, jer to mi puno govori o tome
+              kako da mu pristupim. Svaki pas ima svoj tempo i svoje strahove, i
+              meni je važno da se osećaju sigurno pre nego što krenemo sa bilo
+              kojim tretmanom.
+            </p>
+            <p>
+              Kroz razgovor sa vama dogovorimo šta je psu zaista potrebno,
+              kupanje, šišanje ili malo od svega, i tempom koji njemu odgovara.
+              Radim mirno, sa strpljenjem, i pratim kako se pas oseća u svakom
+              trenutku.
+            </p>
+            <p>
+              Na kraju, vaš ljubimac ne odlazi samo uredan i čist, već i
+              opušten, kao da je bio u poseti kod nekog koga poznaje. To mi je i
+              cilj, da svaki dolazak u salon bude lepo iskustvo, za psa i za
+              vas.
+            </p>
+            <a class="btn btn-pink" href="#kontakt">Kontaktiraj nas</a>
+          </div>
+        </section>
+
+        <!-- ================= SAVETI (kartice) ================= -->
+        <section class="saveti">
+          <div class="saveti-grid">
+            <div class="savet-uvod">
+              <h2>Šta raditi nakon<br />šišanja?</h2>
+              <p>
+                Uz nekoliko jednostavnih navika kod kuće, možete produžiti
+                efekat šišanja i učiniti da se vaš ljubimac oseća prijatno svaki
+                dan.
+              </p>
+            </div>
+
+            <article class="savet savet-pink">
+              <h3 data-anim="razmak">Navikavanje psa na negu</h3>
+              <p>
+                Pozitivan odnos prema nezi gradi se vremenom. Pohvala, opuštenje i miran pristup pomažu da pas šišanje i održavanje doživi kao prijatno iskustvo.
+              </p>
+            </article>
+
+            <article class="savet">
+              <h3 data-anim="razmak">Priprema psa pre šišanja</h3>
+              <p>
+                Pre dolaska u salon poželjno je da pas bude miran, da obavi
+                šetnju i nuždu. Čista i raščešljana dlaka olakšava tretman i
+                omogućava bolji rezultat.
+              </p>
+            </article>
+
+            <article class="savet">
+              <h3 data-anim="razmak">Redovno četkanje dlake</h3>
+              <p>
+                Četkanje je jedan od najvažnijih koraka nakon šišanja. Pomaže u
+                uklanjanju mrtve dlake, sprečava stvaranje čvorova i održava
+                dlaku mekom i urednom.
+              </p>
+            </article>
+
+            <article class="savet">
+              <h3 data-anim="razmak">Kupanje između tretmana</h3>
+              <p>
+                Nije potrebno kupati psa svakodnevno, jer to može isušiti kožu i
+                dlaku. Dovoljno je kupanje po potrebi, kada je pas prljav.
+              </p>
+            </article>
+
+            <article class="savet">
+              <h3 data-anim="razmak">Održavanje higijene između tretmana</h3>
+              <p>
+                Redovno brisanje šapa, održavanje čistoće dlake i povremena nega
+                kod kuće pomažu da pas duže ostane čist i svež između dolazaka u
+                salon.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <!-- ================= O NAMA ================= -->
+        <section class="onama" id="o-nama">
+          <div class="onama-inner">
+            <div class="onama-photo">
+              <img
+                src="assets/images/molly-pas-rodjendan.jpg"
+                alt="Mops Molly ispred rođendanske torte"
+              />
+            </div>
+
+            <div class="onama-text">
+              <span class="kicker">O nama</span>
+              <h2>Sve je počelo sa Molly</h2>
+
+              <p>
+                Ljubav prema šišanju pasa se kod mene rodila kroz Molly, dok sam
+                učila da negujem njenu dlaku i brinem o njoj. Iz te brige je
+                nastala prava strast prema šišanju, kupanju i druženju sa psima,
+                i tako je salon dobio ime po njoj.
+              </p>
+              <p>
+                Sve je počelo od kuće, iz želje da svom psu pružim najbolju
+                negu. Vremenom se ta ljubav proširila i na druge ljubimce, i
+                danas imam mali salon u centru Požarevca, gde su svi psi
+                dobrodošli.
+              </p>
+              <p>
+                Svakom psu prilazim sa istom pažnjom koju sam nekad poklanjala
+                Molly, uzimajući u obzir njegovu rasu, tip dlake i karakter.
+                Volim da svaki tretman bude prijatno iskustvo, i za psa i za
+                vlasnika, jer to je ono što mene i danas najviše ispunjava u
+                ovom poslu.
+              </p>
+
+              <div class="onama-stats">
+                <div class="stat">
+                  <div class="stat-value">
+                    <span class="stat-num" data-target="3000">0</span
+                    ><span class="plus">+</span>
+                  </div>
+                  <div class="stat-label">Zadovoljnih pasa</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">
+                    <span class="stat-num" data-target="4">0</span
+                    ><span class="plus">+</span>
+                  </div>
+                  <div class="stat-label">Radno iskustvo</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">
+                    <span class="stat-num" data-target="4.6" data-decimals="1"
+                      >0</span
+                    ><span class="plus">★</span>
+                  </div>
+                  <div class="stat-label">Ocena klijenata</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">
+                    <span class="stat-num" data-target="100">0</span
+                    ><span class="pct">%</span>
+                  </div>
+                  <div class="stat-label">Posvećenost svakom psu</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= FAQ ================= -->
+        <section class="faq" data-rail="light">
+          <div class="faq-inner">
+            <div class="faq-intro">
+              <h2 data-anim="slovo-skok" data-split="slovo">
+                Često postavljana pitanja
+              </h2>
+              <p>
+                Pripremili smo odgovore na najčešća pitanja kako bismo vam olakšali pripremu i učinili prvi dolazak što prijatnijim za vas i vašeg ljubimca.
+              </p>
+            </div>
+
+            <div class="faq-list">
+              <div class="faq-item is-open">
+                <button class="faq-q" type="button" aria-expanded="true">
+                  <span>Koliko traje šišanje psa?</span>
+                  <i class="faq-ikona" aria-hidden="true"></i>
+                </button>
+                <div class="faq-a">
+                  <div>
+                    <p>
+                      Zavisi od rase, veličine i stanja dlake, ali u proseku
+                      tretman traje između jedan i dva sata. Uvek radim bez
+                      žurbe, jer je pas važnije da se oseća opušteno nego da sve
+                      bude gotovo brzo.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-q" type="button" aria-expanded="false">
+                  <span>Koliko često je potrebno šišati psa?</span>
+                  <i class="faq-ikona" aria-hidden="true"></i>
+                </button>
+                <div class="faq-a">
+                  <div>
+                    <p>
+                      Za većinu pasa preporuka je jednom u mesec do dva, ali to
+                      zavisi od tipa dlake i rase. Kod prvog dolaska rado dam
+                      savet koji ritam najviše odgovara vašem ljubimcu.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-q" type="button" aria-expanded="false">
+                  <span>Da li radite sa plašljivim ili nervoznim psima?</span>
+                  <i class="faq-ikona" aria-hidden="true"></i>
+                </button>
+                <div class="faq-a">
+                  <div>
+                    <p>
+                      Da, svakom psu prilazim strpljivo i prilagođavam tempo
+                      njegovom raspoloženju. Ako je potrebno, tretman radim u
+                      više pauza, kako bi se pas osećao sigurno tokom cele
+                      posete.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-q" type="button" aria-expanded="false">
+                  <span>Šta ako moj pas nikada nije bio na šišanju?</span>
+                  <i class="faq-ikona" aria-hidden="true"></i>
+                </button>
+                <div class="faq-a">
+                  <div>
+                    <p>
+                      Nema razloga za brigu, prvi put uvek prilazim polako,
+                      dajem psu vremena da se navikne na prostor i na mene, i
+                      tako gradimo poverenje od prve posete.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-q" type="button" aria-expanded="false">
+                  <span>Koja je cena šišanja?</span>
+                  <i class="faq-ikona" aria-hidden="true"></i>
+                </button>
+                <div class="faq-a">
+                  <div>
+                    <p>
+                      Cena zavisi od veličine i rase psa, kao i od urednosti
+                      dlake, koliko je zapuštena i kada je pas poslednji put bio
+                      na šišanju. Za tačnu cenu najbolje je da se javite ili
+                      dovedete psa, pa dogovorimo sve na licu mesta.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= KONTAKT ================= -->
+        <section class="kontakt" id="kontakt">
+          <div class="kontakt-inner">
+            <div class="kontakt-mapa">
+              <iframe
+                src="https://www.google.com/maps?q=Tr%C5%BEni%20centar%20Novi%20Dom,%20Mo%C5%A1e%20Pijade%2016,%20Po%C5%BEarevac&output=embed"
+                title="Lokacija salona na mapi"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+
+            <div class="kontakt-info">
+              <div class="kontakt-kolona">
+                <h3>Instagram</h3>
+                <p>@salon_za_pse_molly</p>
+                <a
+                  class="btn btn-outline magnetic"
+                  href="https://instagram.com/salon_za_pse_molly"
+                  target="_blank"
+                  rel="noopener"
+                  >Pošalji nam poruku</a
+                >
+              </div>
+
+              <div class="kontakt-kolona">
+                <h3>Telefon</h3>
+                <p>+381 69744364</p>
+                <a class="btn btn-pink magnetic" href="tel:+38169744364"
+                  >Zakaži svoj termin</a
+                >
+              </div>
+
+              <div class="kontakt-kolona">
+                <h3>Adresa</h3>
+                <p>Tržni centar Novi Dom, Moše<br />Pijada 16, Požarevac</p>
+                <a
+                  class="btn btn-outline magnetic"
+                  href="https://www.google.com/maps/search/?api=1&query=Mo%C5%A1e+Pijade+16+Po%C5%BEarevac"
+                  target="_blank"
+                  rel="noopener"
+                  >Vidi lokaciju</a
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <!-- /.page-content -->
+    </div>
+    <!-- /.page-wrap -->
+
+    <footer class="site-footer" data-rail="light">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a class="footer-logo" href="#pocetna">
+            <img src="assets/images/logo.png" alt="" />
+            <span>Salon za pse Molly</span>
+          </a>
+          <p>Svaki pas zaslužuje pažnju, negu i osmeh, tu smo za to.</p>
         </div>
 
-        <div class="section-cta">
-            <a class="btn btn-pink" href="#kontakt">Zakaži termin</a>
+        <div class="footer-kolona">
+          <h4>Radno vreme</h4>
+          <p>Radimo samo na zakazivanje, javite se kad god Vam odgovara!</p>
         </div>
-    </section>
+
+        <div class="footer-kolona">
+          <h4>Kontakt</h4>
+          <ul class="footer-kontakt">
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle
+                  cx="17.5"
+                  cy="6.5"
+                  r="1.2"
+                  fill="currentColor"
+                  stroke="none"
+                />
+              </svg>
+              <a
+                href="https://instagram.com/salon_za_pse_molly"
+                target="_blank"
+                rel="noopener"
+                >@salon_za_pse_molly</a
+              >
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7 2 2 0 0 1 6.5 3.5z"
+                />
+              </svg>
+              <a href="tel:+38169744364">+381 69744364</a>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="14" rx="2" />
+                <path d="m3.5 6.5 8.5 6 8.5-6" />
+              </svg>
+              <a href="mailto:milosevicandjela38@gmail.com"
+                >milosevicandjela38@gmail.com</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
 
     <script src="js/main.js"></script>
   </body>
