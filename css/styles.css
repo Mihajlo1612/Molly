@@ -1389,6 +1389,11 @@ body.intro-lock .nav-brand img {
 }
 
 
+/* prelomi koji rade samo na telefonu */
+br.prelom-mobilni {
+  display: none;
+}
+
 /* ================= Hamburger dugme ================= */
 .nav-toggle {
   display: none;
@@ -1545,6 +1550,10 @@ body.meni-otvoren .nav-toggle span:nth-child(3) {
     height: auto;
   }
 
+  br.prelom-mobilni {
+    display: block;
+  }
+
   .section-head h2 {
     font-size: 30px;
     letter-spacing: -0.8px;
@@ -1552,6 +1561,18 @@ body.meni-otvoren .nav-toggle span:nth-child(3) {
 
   .transform-track {
     gap: 20px;
+  }
+
+  /* zavese su na desktopu siroke koliko kartica (344px); na telefonu bi
+     dve takve prekrile ceo ekran i traka bi izgledala prazno */
+  .transform-track::before,
+  .transform-track::after {
+    width: 60px;
+  }
+
+  /* .usluga.flip je specificniji od .usluga, pa mora i on izricito */
+  .usluga.flip {
+    grid-template-columns: 1fr;
   }
 
   .transform-card {

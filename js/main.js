@@ -27,7 +27,10 @@
 
         izvor.forEach(function (cvor) {
             if (cvor.nodeType === 1 && cvor.tagName === 'BR') {
-                frag.appendChild(document.createElement('br'));
+                var prelom = document.createElement('br');
+                /* klasa se prenosi, da prelom moze da se gasi kroz CSS */
+                if (cvor.className) prelom.className = cvor.className;
+                frag.appendChild(prelom);
                 return;
             }
 
