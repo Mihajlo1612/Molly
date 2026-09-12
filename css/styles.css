@@ -102,6 +102,8 @@ ul {
   color: #fff;
   /* mesto za fiksirani meni (88px logo + 2 × 20px razmaka) */
   padding-top: 128px;
+  position: relative;
+  overflow: hidden;
 }
 
 /* da sidra ne završe ispod fiksiranog menija */
@@ -305,7 +307,6 @@ body.skrol .nav {
   }
 }
 
-
 /* ================= Zajedničko za sekcije ================= */
 .section-head {
   display: flex;
@@ -458,12 +459,10 @@ body.skrol .nav {
   overflow: hidden;
   margin-bottom: 28px;
   box-shadow: 0 -14px 40px rgba(23, 19, 26, 0.1);
+  --vrh: calc(50vh + 36px - 176px);
 }
 /* kartica se lepi na sredinu vidljivog dela, ispod fiksiranog menija:
    72px je visina skupljenog menija, 176px je pola visine kartice */
-.usluga {
-  --vrh: calc(50vh + 36px - 176px);
-}
 .usluga:nth-of-type(1) {
   top: var(--vrh);
 }
@@ -512,11 +511,6 @@ body.skrol .nav {
   font-size: 14.5px;
   line-height: 22px;
   color: #4b4b52;
-}
-.usluga-broj {
-  width: 52px;
-  height: 52px;
-  font-size: 21px;
 }
 
 .section-sub {
@@ -624,6 +618,7 @@ body.skrol .nav {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
+  perspective: 820px;
 }
 
 .savet-uvod {
@@ -651,6 +646,8 @@ body.skrol .nav {
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
 .savet:hover {
@@ -850,10 +847,6 @@ body.skrol .nav {
 }
 
 /* ================= Šapice ================= */
-.hero {
-  position: relative;
-  overflow: hidden;
-}
 
 .paw-layer {
   position: fixed;
@@ -893,14 +886,6 @@ body.skrol .nav {
 }
 
 /* ================= Nagib kartica ================= */
-.saveti-grid {
-  perspective: 820px;
-}
-.savet {
-  transform-style: preserve-3d;
-  will-change: transform;
-  transition: box-shadow 0.3s ease;
-}
 
 @media (prefers-reduced-motion: reduce) {
   .paw {
@@ -1387,7 +1372,6 @@ body.intro-lock .nav-brand img {
     animation: none !important;
   }
 }
-
 
 /* prelomi koji rade samo na telefonu */
 br.prelom-mobilni {
