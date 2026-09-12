@@ -402,7 +402,6 @@
     var railLinks = document.getElementById('railLinks');
     var railTrack = rail ? rail.querySelector('.rail-track') : null;
     var navProgress = document.getElementById('navProgress');
-    var mqRow = document.querySelector('.transform-row');
 
     var links = railLinks ? [].slice.call(railLinks.querySelectorAll('.rail-link')) : [];
         var targets = links.map(function (l) {
@@ -410,21 +409,11 @@
     });
     var tonovi = [].slice.call(document.querySelectorAll('[data-rail]'));
 
-    var lastY = window.scrollY;
-    var offset = 0;
-    var half = 0;
-    var scrollDirty = true;
+    var cekaFrejm = false;
 
-    /* Traka slika. Sve je u pikselima po milisekundi, ne po frejmu, da bi
-       brzina bila ista na 60 i na 144 Hz. `cilj` je dodatak koji donese skrol,
-       `brzina` ga sustiže postepeno — to uglačavanje uklanja trzaje. */
-    var OSNOVNA = 0.036;   /* px/ms — isto kao 0.6px po frejmu na 60 Hz */
-    var GRANICA = 0.25;    /* najveći dodatak od skrola, ~7x osnovna brzina */
-    var UDEO = 0.03;       /* koliki deo brzine skrola traka preuzima */
-    var cilj = 0;
-    var brzina = 0;
-    var zadnjiT = 0;
-    var zadnjiSkrolT = 0;
+    /* Traka slika kliza stalnom brzinom iz CSS-a (@keyframes marquee).
+       Nema je ovde namerno: CSS animacija ide na grafičkoj, nezavisno od
+       glavne niti, pa ne može da zastane dok se izvršava JavaScript. */
 
     /* na vrhu stranice klasičan meni, čim se krene rail preuzima linkove.
        Stoji u samom osluškivaču, a ne u rAF petlji, da radi i kad tab nije u prvom planu. */
@@ -433,27 +422,20 @@
     }
 
     window.addEventListener('scroll', function () {
-        var sada = performance.now();
-        var razmak = zadnjiSkrolT ? Math.max(sada - zadnjiSkrolT, 1) : 16.7;
-        zadnjiSkrolT = sada;
-
-        /* trenutna brzina skrola u px/ms — ne sabira se, nego se uzima jača od
-           postojeće. Sabiranje je dizalo brzinu na svaki sledeći skrol. */
-        var predlog = ((window.scrollY - lastY) / razmak) * UDEO;
-        if (predlog > GRANICA) predlog = GRANICA;
-        if (predlog < -GRANICA) predlog = -GRANICA;
-        if (Math.abs(predlog) > Math.abs(cilj)) cilj = predlog;
-
-        lastY = window.scrollY;
-        scrollDirty = true;
         osveziMeni();
+        if (!cekaFrejm) {
+            cekaFrejm = true;
+            requestAnimationFrame(frame);
+        }
     }, { passive: true });
 
     osveziMeni();
 
     window.addEventListener('resize', function () {
-        half = 0;
-        scrollDirty = true;
+        if (!cekaFrejm) {
+            cekaFrejm = true;
+            requestAnimationFrame(frame);
+        }
     }, { passive: true });
 
     function updateScroll() {
@@ -492,38 +474,13 @@
         }
     }
 
-    function frame(t) {
-        if (scrollDirty) {
-            updateScroll();
-            scrollDirty = false;
-        }
-
-        if (mqRow && !reduce) {
-            /* dt ograničen na 64ms: posle prebacivanja taba ne sme da skoči */
-            var dt = zadnjiT ? Math.min(t - zadnjiT, 64) : 16.7;
-            zadnjiT = t;
-            var k = dt / 16.7;
-
-            cilj *= Math.pow(0.90, k);                              /* skrol jenjava */
-            brzina += (cilj - brzina) * (1 - Math.pow(0.82, k));    /* brzina ga meko sustiže */
-
-            if (!half) half = mqRow.scrollWidth / 2;
-            offset -= (OSNOVNA + brzina) * dt;
-
-            if (half) {
-                if (offset <= -half) offset += half;
-                if (offset > 0) offset -= half;
-            }
-
-            /* translate3d drži traku na grafičkoj, bez ponovnog iscrtavanja slika */
-            mqRow.style.transform =
-                'translate3d(' + offset.toFixed(2) + 'px,0,0)';
-        }
-
-        requestAnimationFrame(frame);
+    /* petlja se više ne vrti stalno — budi se samo na skrol i na promenu širine */
+    function frame() {
+        cekaFrejm = false;
+        updateScroll();
     }
 
-    requestAnimationFrame(frame);
+    frame();
 
     /* =====================================================
    Usluge: pretapanje zakačene slike
