@@ -1448,7 +1448,7 @@ body.meni-otvoren .nav-toggle span:nth-child(3) {
   /* meni izlazi kao panel ispod trake */
   .nav-right {
     position: fixed;
-    top: 80px;
+    top: 72px;
     left: 0;
     right: 0;
     bottom: 0;
@@ -1457,11 +1457,11 @@ body.meni-otvoren .nav-toggle span:nth-child(3) {
     gap: 28px;
     padding: 40px 28px;
     background: var(--pink);
-    /* mali pomak + providnost, a ne izlazak iz ekrana: fiksiran element
-       gurnut van vidnog polja pravi bocni preliv koji clip ne seče */
+    /* pomak je USPRAVAN: svaki bocni pomeraj fiksiranog elementa siri
+       stranicu, a telefon tada odzumira ceo prikaz da bi to stalo */
     opacity: 0;
     visibility: hidden;
-    transform: translateX(6%);
+    transform: translateY(-10px);
     transition:
       opacity 0.35s ease,
       transform 0.45s cubic-bezier(0.65, 0, 0.35, 1),
@@ -1497,14 +1497,24 @@ body.meni-otvoren .nav-toggle span:nth-child(3) {
     overflow: hidden;
   }
 
-  .nav-brand img {
-    width: 56px;
-    height: 56px;
+  /* na 375px logo + naziv + hamburger traze 386px — zato manje */
+  .nav-brand {
+    gap: 10px;
+    min-width: 0;
   }
 
-  /* traka je ovde 80px visoka (logo 56 + 2 × 12 razmaka) */
+  .nav-brand img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .nav-brand span {
+    font-size: 17px;
+  }
+
+  /* traka je ovde 72px visoka (logo 48 + 2 × 12 razmaka) */
   .hero {
-    padding-top: 80px;
+    padding-top: 72px;
   }
 
   [id] {
