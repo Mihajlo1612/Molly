@@ -210,17 +210,27 @@
 
             /* svaka promena širine menja prelom — premeri taj paragraf */
             if (window.ResizeObserver) {
-                var ro = new ResizeObserver(function (unosi) {
-                    unosi.forEach(function (u) {
-                        var el = u.target;
-                        var w = Math.round(u.contentRect.width);
-                        if (el._sirina === w || el.dataset.podeljen !== '1') return;
-                        el._sirina = w;
+                var roTajmer;
 
-                        var odigrao = el.classList.contains('go');
-                        podeliRedove(el);
-                        if (odigrao) el.classList.add('odmah');
-                    });
+                /* ResizeObserver se javlja na svaku međuvrednost dok se prozor
+                   vuče. Merenje u tom trenutku daje prelazne širine i prelom
+                   ispadne po jedna reč u redu — zato se čeka da se smiri, pa se
+                   širina čita iznova umesto iz zastarelog contentRect. */
+                var ro = new ResizeObserver(function () {
+                    clearTimeout(roTajmer);
+                    roTajmer = setTimeout(function () {
+                        pasusi.forEach(function (el) {
+                            if (el.dataset.podeljen !== '1') return;
+
+                            var w = Math.round(el.getBoundingClientRect().width);
+                            if (w < 80 || el._sirina === w) return;
+                            el._sirina = w;
+
+                            var odigrao = el.classList.contains('go');
+                            podeliRedove(el);
+                            if (odigrao) el.classList.add('odmah');
+                        });
+                    }, 220);
                 });
                 pasusi.forEach(function (el) { ro.observe(el); });
             }
