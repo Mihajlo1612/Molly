@@ -329,29 +329,7 @@
         });
     });
 
-    /* =====================================================
-       Magnetna dugmad
-       ===================================================== */
-    if (!noHover && !reduce) {
-        document.querySelectorAll('.magnetic').forEach(function (btn) {
-            btn.addEventListener('mousemove', function (e) {
-                var r = btn.getBoundingClientRect();
-                var dx = e.clientX - (r.left + r.width / 2);
-                var dy = e.clientY - (r.top + r.height / 2);
-                btn.style.transition = 'transform .15s ease-out';
-                btn.style.transform =
-                    'translate(' + dx * 0.28 + 'px,' + dy * 0.4 + 'px)';
-            });
-            btn.addEventListener('mouseleave', function () {
-                btn.style.transition = 'transform .45s cubic-bezier(.19,1,.22,1)';
-                btn.style.transform = '';
-            });
-        });
-    }
-
-    /* =====================================================
-       Nagib kartica
-       ===================================================== */
+    
     if (!noHover && !reduce) {
         document.querySelectorAll('.savet').forEach(function (card) {
             card.addEventListener('mousemove', function (e) {
@@ -368,10 +346,6 @@
             });
         });
     }
-
-    /* =====================================================
-       Trag šapica (samo hero)
-       ===================================================== */
         /* =====================================================
        Trag šapica po celoj stranici
        ===================================================== */
