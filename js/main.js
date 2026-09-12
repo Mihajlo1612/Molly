@@ -159,6 +159,20 @@
         izmeriRedove(el);
         var redovi = izmeriRedove(el);
 
+        /* Provera zdravog razuma: ako je ispalo skoro po jedna reč u redu a
+           paragraf uopšte nije uzan, merenje je uhvatilo raspored u prelaznom
+           stanju. Bolje vratiti običan tekst nego prikazati razvučenu kolonu. */
+        var brojReci = el.dataset.pun.split(PRELOM).join(' ')
+            .split(' ').filter(function (r) { return r.length; }).length;
+
+        if (brojReci > 6 &&
+            redovi.length > brojReci * 0.6 &&
+            el.getBoundingClientRect().width > 200) {
+            el.textContent = el.dataset.pun.split(PRELOM).join(' ');
+            delete el.dataset.podeljen;
+            return false;
+        }
+
         el.innerHTML = '';
         redovi.forEach(function (reci, i) {
             var red = document.createElement('span');
@@ -174,6 +188,7 @@
         });
 
         el.dataset.podeljen = '1';
+        return true;
     }
 
     /* merimo tek kad su i fontovi i slike gotovi, inače je prelom pogrešan */
@@ -194,10 +209,22 @@
         kadSveSpremno(function () {
             var pasusi = [].slice.call(document.querySelectorAll(PARAGRAFI));
 
+            /* podeli, pa ako provera javi da merenje nije valjalo probaj opet */
+            function podeliSaPonavljanjem(el, pokusaj) {
+                if (podeliRedove(el)) {
+                    el._sirina = Math.round(el.getBoundingClientRect().width);
+                    return;
+                }
+                if (pokusaj < 3) {
+                    setTimeout(function () {
+                        podeliSaPonavljanjem(el, pokusaj + 1);
+                    }, 300 * pokusaj);
+                }
+            }
+
             pasusi.forEach(function (el) {
                 el.setAttribute('data-anim', 'paragraf-redovi');
-                podeliRedove(el);
-                el._sirina = Math.round(el.getBoundingClientRect().width);
+                podeliSaPonavljanjem(el, 1);
 
                 var io = new IntersectionObserver(function (unosi) {
                     if (unosi[0].isIntersecting) {
