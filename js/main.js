@@ -272,47 +272,20 @@
        Intro: logo se otkrije pa sleti u navbar
        ===================================================== */
     /* =====================================================
-       Osvežavanje stranice
+       Osvežavanje stranice = kao prvi dolazak
        ===================================================== */
-    var ulaz = (window.performance && performance.getEntriesByType
-        ? performance.getEntriesByType('navigation')[0]
-        : null) || {};
-    var vracanje = ulaz.type === 'reload' || ulaz.type === 'back_forward';
-
-    /* Povratak na staro mesto radimo sami. Pregledačev automatski povratak
-       ovde promašuje iz dva razloga: `intro-lock` drži overflow: hidden dok
-       intro traje, a i visina stranice se menja kad se paragrafi podele. */
-    var KLJUC = 'molly:skrol';
-
+    /* 'manual' isključuje pregledačev automatski povratak na staro mesto;
+       bez toga bi osvežavanje zateklo stranicu na sredini, sa introm preko. */
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 
-    window.addEventListener('pagehide', function () {
-        try {
-            sessionStorage.setItem(KLJUC, String(Math.round(window.scrollY)));
-        } catch (e) { /* privatni režim ume da zabrani upis */ }
-    });
-
-    function vratiSkrol() {
-        if (!vracanje) return;
-        var y = 0;
-        try { y = parseInt(sessionStorage.getItem(KLJUC) || '0', 10); } catch (e) { }
-        if (!y) return;
-
-        /* trenutno, ne glatko — html ima scroll-behavior: smooth, pa bi se
-           inače stranica pri učitavanju sama spuštala sekundama */
-        window.scrollTo({ top: y, left: 0, behavior: 'instant' });
-    }
-
-    /* tek kad je prelom gotov i visina stranice konačna — vrati skrol */
-    kadSveSpremno(vratiSkrol);
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
 
     (function intro() {
         var screen = document.getElementById('introScreen');
         var introLogo = document.getElementById('introLogo');
         var navLogo = document.querySelector('.nav-brand img');
 
-        /* intro nema smisla nekome ko je već bio na stranici */
-        if (!screen || !introLogo || !navLogo || reduce || vracanje) {
+        if (!screen || !introLogo || !navLogo || reduce) {
             if (screen) screen.remove();
             document.body.classList.remove('intro-lock');
             playTitle();
