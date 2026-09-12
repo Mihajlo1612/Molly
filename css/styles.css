@@ -179,7 +179,7 @@ body.skrol .nav {
 }
 
 .nav-links a:hover {
-  opacity: 8;
+  opacity: 0.8;
 }
 
 .nav-links a::after {
