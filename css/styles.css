@@ -110,6 +110,8 @@ ul {
 
 /* fiksiran, a ne sticky: kad se meni smanji ne sme da pomeri sadržaj ispod sebe,
    jer bi se usred glatkog skrolovanja pomerao i sam cilj skrola */
+/* poravnanje je stalno space-between jer justify-content ne može da se animira;
+   logo i dugme klize ka ivicama preko padding-a, koji može */
 .nav {
   position: fixed;
   top: 0;
@@ -119,20 +121,22 @@ ul {
   background: var(--pink);
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 200px;
-  padding: 20px 30px;
-  transition:
-    padding 0.35s ease,
-    gap 0.35s ease;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 20px 15%;
+  transition: padding 0.75s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+body.skrol .nav {
+  padding: 10px 30px;
 }
 
 .nav-brand img,
 .nav-brand span {
   transition:
-    width 0.35s ease,
-    height 0.35s ease,
-    font-size 0.35s ease;
+    width 0.75s cubic-bezier(0.65, 0, 0.35, 1),
+    height 0.75s cubic-bezier(0.65, 0, 0.35, 1),
+    font-size 0.75s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 .nav-brand {
@@ -285,9 +289,9 @@ ul {
 }
 
 @media (max-width: 1280px) {
+  /* uža margina, jer 15% na manjem ekranu previše steže meni */
   .nav {
-    gap: 48px;
-    justify-content: space-between;
+    padding: 20px 6%;
   }
 
   .hero-inner {
@@ -767,25 +771,42 @@ ul {
       visibility 0s;
   }
 
+  /* sadržaj se drži desne ivice, uz samo dugme — pa dok se širina skuplja
+     izgleda kao da linkovi ulaze u njega, a ne da se seku sa strane */
   .nav-links {
     overflow: hidden;
+    justify-content: flex-end;
     max-width: 640px;
-    opacity: 1;
-    transition:
-      max-width 0.45s ease,
-      opacity 0.25s ease;
+    transition: max-width 0.75s cubic-bezier(0.65, 0, 0.35, 1) 0.12s;
   }
   body.skrol .nav-links {
     max-width: 0;
-    opacity: 0;
     pointer-events: none;
   }
 
-  body.skrol .nav {
-    justify-content: space-between;
-    gap: 24px;
-    padding: 10px 30px;
+  /* svaki link posebno uleće, počev od onog najbližeg dugmetu */
+  .nav-links li {
+    transition:
+      transform 0.5s cubic-bezier(0.65, 0, 0.35, 1),
+      opacity 0.35s ease;
   }
+  body.skrol .nav-links li {
+    transform: translateX(30px) scale(0.8);
+    opacity: 0;
+  }
+
+  .nav-links li:nth-last-child(1) { transition-delay: 0.2s; }
+  .nav-links li:nth-last-child(2) { transition-delay: 0.15s; }
+  .nav-links li:nth-last-child(3) { transition-delay: 0.1s; }
+  .nav-links li:nth-last-child(4) { transition-delay: 0.05s; }
+  .nav-links li:nth-last-child(5) { transition-delay: 0s; }
+
+  body.skrol .nav-links li:nth-last-child(1) { transition-delay: 0s; }
+  body.skrol .nav-links li:nth-last-child(2) { transition-delay: 0.05s; }
+  body.skrol .nav-links li:nth-last-child(3) { transition-delay: 0.1s; }
+  body.skrol .nav-links li:nth-last-child(4) { transition-delay: 0.15s; }
+  body.skrol .nav-links li:nth-last-child(5) { transition-delay: 0.2s; }
+
   body.skrol .nav-brand img {
     width: 52px;
     height: 52px;
