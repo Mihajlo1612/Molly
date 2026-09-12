@@ -76,16 +76,26 @@
         if (heroTitle) heroTitle.classList.add('go');
     }
 
+    /* Okidanje animacija teksta.
+       ULAZ pomera donju ivicu naviše, pa element mora da uđe dublje u ekran
+       pre nego što se racuna da je vidljiv — inace animacija krene dok je
+       tekst jos na samoj ivici. ZASTOJ je dodatna pauza posle toga. */
+    var ULAZ = '0px 0px -15% 0px';
+    var ZASTOJ = 500;
+
+    function pustiKadUdje(el, prag) {
+        var io = new IntersectionObserver(function (unosi) {
+            if (!unosi[0].isIntersecting) return;
+            io.disconnect();
+            setTimeout(function () { el.classList.add('go'); }, ZASTOJ);
+        }, { threshold: prag, rootMargin: ULAZ });
+        io.observe(el);
+    }
+
     /* ostali naslovi kreću kad uđu u vidno polje */
     animNaslovi.forEach(function (el) {
         if (el === heroTitle) return;
-        var io = new IntersectionObserver(function (unosi) {
-            if (unosi[0].isIntersecting) {
-                el.classList.add('go');
-                io.disconnect();
-            }
-        }, { threshold: 0.35 });
-        io.observe(el);
+        pustiKadUdje(el, 0.35);
     });
 
     /* =====================================================
@@ -226,13 +236,7 @@
                 el.setAttribute('data-anim', 'paragraf-redovi');
                 podeliSaPonavljanjem(el, 1);
 
-                var io = new IntersectionObserver(function (unosi) {
-                    if (unosi[0].isIntersecting) {
-                        el.classList.add('go');
-                        io.disconnect();
-                    }
-                }, { threshold: 0.25 });
-                io.observe(el);
+                pustiKadUdje(el, 0.25);
             });
 
             /* svaka promena širine menja prelom — premeri taj paragraf */
@@ -349,19 +353,7 @@
                     animateCounters(group);
                     io.disconnect();
                 }
-            }, { threshold: 0.4 });
-            io.observe(group);
-        });
-    });
-
-    document.fonts.ready.then(function () {
-        document.querySelectorAll('.hero-stats, .onama-stats').forEach(function (group) {
-            var io = new IntersectionObserver(function (entries) {
-                if (entries[0].isIntersecting) {
-                    animateCounters(group);
-                    io.disconnect();
-                }
-            }, { threshold: 0.4 });
+            }, { threshold: 0.4, rootMargin: ULAZ });
             io.observe(group);
         });
     });
@@ -519,26 +511,7 @@
 
     frame();
 
-    /* =====================================================
-   Usluge: pretapanje zakačene slike
-   ===================================================== */
-    (function usluge() {
-        var blocks = document.querySelectorAll('.usluga-blok');
-        var shots = document.querySelectorAll('.usluga-slika');
-        if (!blocks.length || !shots.length) return;
-
-        var io = new IntersectionObserver(function (entries) {
-            entries.forEach(function (e) {
-                if (!e.isIntersecting) return;
-                var idx = +e.target.getAttribute('data-idx');
-                shots.forEach(function (img, i) {
-                    img.classList.toggle('is-on', i === idx);
-                });
-            });
-        }, { rootMargin: '-45% 0px -45% 0px' });
-
-        blocks.forEach(function (b) { io.observe(b); });
-    })();
+    
 
     /* =====================================================
    FAQ harmonika
