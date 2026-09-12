@@ -1631,6 +1631,30 @@ body.meni-otvoren .nav-toggle span:nth-child(3) {
     grid-template-columns: 1fr;
     gap: 28px;
   }
+  /* FAQ je jedina sekcija bez mobilnih pravila — 340px kolona plus 72px
+     razmaka trazili su 412px na ekranu od 375, pa je stranica bila sira
+     od ekrana i telefon je odzumirao ceo prikaz */
+  .faq {
+    padding: 64px 20px;
+  }
+
+  .faq-inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .faq-intro h2 {
+    font-size: 30px;
+  }
+
+  .faq-q {
+    font-size: 15px;
+  }
+
+  .faq-a p {
+    padding-right: 8px;
+  }
+
   .site-footer {
     padding: 48px 20px 56px;
   }
