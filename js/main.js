@@ -272,6 +272,39 @@
        Intro: logo se otkrije pa sleti u navbar
        ===================================================== */
     /* =====================================================
+       Hamburger meni (telefon)
+       ===================================================== */
+    (function meni() {
+        var dugme = document.getElementById('navToggle');
+        var panel = document.getElementById('navPanel');
+        if (!dugme || !panel) return;
+
+        function postavi(otvoren) {
+            document.body.classList.toggle('meni-otvoren', otvoren);
+            dugme.setAttribute('aria-expanded', otvoren ? 'true' : 'false');
+            dugme.setAttribute('aria-label', otvoren ? 'Zatvori meni' : 'Otvori meni');
+        }
+
+        dugme.addEventListener('click', function () {
+            postavi(!document.body.classList.contains('meni-otvoren'));
+        });
+
+        /* klik na bilo koju stavku vodi dalje, pa meni treba da se skloni */
+        panel.addEventListener('click', function (e) {
+            if (e.target.closest('a')) postavi(false);
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') postavi(false);
+        });
+
+        /* ako se prozor prosiri preko praga, panel nema smisla da ostane otvoren */
+        window.addEventListener('resize', function () {
+            if (window.innerWidth > 900) postavi(false);
+        }, { passive: true });
+    })();
+
+    /* =====================================================
        Osvežavanje stranice = kao prvi dolazak
        ===================================================== */
     /* 'manual' isključuje pregledačev automatski povratak na staro mesto;
