@@ -124,7 +124,7 @@ ul {
   justify-content: space-between;
   gap: 24px;
   padding: 20px 15%;
-  transition: padding 0.75s cubic-bezier(0.65, 0, 0.35, 1);
+  transition: padding 0.6s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 body.skrol .nav {
@@ -134,9 +134,9 @@ body.skrol .nav {
 .nav-brand img,
 .nav-brand span {
   transition:
-    width 0.75s cubic-bezier(0.65, 0, 0.35, 1),
-    height 0.75s cubic-bezier(0.65, 0, 0.35, 1),
-    font-size 0.75s cubic-bezier(0.65, 0, 0.35, 1);
+    width 0.6s cubic-bezier(0.65, 0, 0.35, 1),
+    height 0.6s cubic-bezier(0.65, 0, 0.35, 1),
+    font-size 0.6s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 .nav-brand {
@@ -777,7 +777,7 @@ body.skrol .nav {
     overflow: hidden;
     justify-content: flex-end;
     max-width: 640px;
-    transition: max-width 0.75s cubic-bezier(0.65, 0, 0.35, 1) 0.12s;
+    transition: max-width 0.6s cubic-bezier(0.65, 0, 0.35, 1) 0.1s;
   }
   body.skrol .nav-links {
     max-width: 0;
@@ -787,7 +787,7 @@ body.skrol .nav {
   /* svaki link posebno uleće, počev od onog najbližeg dugmetu */
   .nav-links li {
     transition:
-      transform 0.5s cubic-bezier(0.65, 0, 0.35, 1),
+      transform 0.42s cubic-bezier(0.65, 0, 0.35, 1),
       opacity 0.35s ease;
   }
   body.skrol .nav-links li {
@@ -901,6 +901,8 @@ body.skrol .nav {
 .transform-row {
   display: flex;
   width: max-content;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 /* ================= Intro ================= */

@@ -411,10 +411,18 @@
     var tonovi = [].slice.call(document.querySelectorAll('[data-rail]'));
 
     var lastY = window.scrollY;
-    var velocity = 0;
     var offset = 0;
     var half = 0;
     var scrollDirty = true;
+
+    /* Traka slika. Sve je u pikselima po milisekundi, ne po frejmu, da bi
+       brzina bila ista na 60 i na 144 Hz. `cilj` je dodatak koji donese skrol,
+       `brzina` ga sustiže postepeno — to uglačavanje uklanja trzaje. */
+    var OSNOVNA = 0.036;   /* px/ms — isto kao 0.6px po frejmu na 60 Hz */
+    var GRANICA = 0.55;    /* najveći dodatak od skrola */
+    var cilj = 0;
+    var brzina = 0;
+    var zadnjiT = 0;
 
     /* na vrhu stranice klasičan meni, čim se krene rail preuzima linkove.
        Stoji u samom osluškivaču, a ne u rAF petlji, da radi i kad tab nije u prvom planu. */
@@ -423,7 +431,9 @@
     }
 
     window.addEventListener('scroll', function () {
-        velocity += (window.scrollY - lastY) * 0.35;
+        cilj += (window.scrollY - lastY) * 0.010;
+        if (cilj > GRANICA) cilj = GRANICA;
+        if (cilj < -GRANICA) cilj = -GRANICA;
         lastY = window.scrollY;
         scrollDirty = true;
         osveziMeni();
@@ -472,21 +482,32 @@
         }
     }
 
-    function frame() {
+    function frame(t) {
         if (scrollDirty) {
             updateScroll();
             scrollDirty = false;
         }
 
         if (mqRow && !reduce) {
+            /* dt ograničen na 64ms: posle prebacivanja taba ne sme da skoči */
+            var dt = zadnjiT ? Math.min(t - zadnjiT, 64) : 16.7;
+            zadnjiT = t;
+            var k = dt / 16.7;
+
+            cilj *= Math.pow(0.90, k);                              /* skrol jenjava */
+            brzina += (cilj - brzina) * (1 - Math.pow(0.82, k));    /* brzina ga meko sustiže */
+
             if (!half) half = mqRow.scrollWidth / 2;
-            offset -= 0.6 + velocity;
-            velocity *= 0.5;
+            offset -= (OSNOVNA + brzina) * dt;
+
             if (half) {
                 if (offset <= -half) offset += half;
                 if (offset > 0) offset -= half;
             }
-            mqRow.style.transform = 'translateX(' + offset + 'px)';
+
+            /* translate3d drži traku na grafičkoj, bez ponovnog iscrtavanja slika */
+            mqRow.style.transform =
+                'translate3d(' + offset.toFixed(2) + 'px,0,0)';
         }
 
         requestAnimationFrame(frame);
