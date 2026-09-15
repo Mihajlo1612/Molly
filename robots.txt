@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.salon-za-pse-molly.com/sitemap.xml
+Sitemap: https://salonzapsemolly.com/sitemap.xml
