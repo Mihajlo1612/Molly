@@ -1555,8 +1555,6 @@ body.meni-otvoren .nav-toggle span:nth-child(3) {
     overflow-x: auto;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
-    scroll-padding: 0 20px;
     padding-inline: 20px;
     scrollbar-width: none;
   }
@@ -1581,18 +1579,13 @@ body.meni-otvoren .nav-toggle span:nth-child(3) {
     flex-basis: 78vw;
     height: 340px;
     margin-right: 14px;
-    scroll-snap-align: center;
   }
 
   .transform-card:last-child {
     margin-right: 0;
   }
 
-  /* duplikati postoje samo zbog beskonacne petlje; pri rucnom skrolu
-     bi bili isto sedam slika jos jednom */
-  .transform-card[aria-hidden="true"] {
-    display: none;
-  }
+  /* duplikati ostaju vidljivi — oni su ono sto omogucava petlju */
 
   .usluge {
     padding: 64px 20px;

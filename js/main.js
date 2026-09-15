@@ -275,6 +275,69 @@
        Intro: logo se otkrije pa sleti u navbar
        ===================================================== */
     /* =====================================================
+       Traka slika na telefonu
+       ===================================================== */
+    /* Na desktopu traku vuce CSS animacija. Na telefonu to ne moze, jer
+       bi se prst borio sa animacijom — zato je tamo pravi skrol kontejner,
+       a klizanje se postize pomeranjem scrollLeft. Prevlacenje prstom time
+       prirodno ubrzava traku, a inercija je nastavlja. */
+    (function trakaNaTelefonu() {
+        var traka = document.querySelector('.transform-track');
+        var red = document.querySelector('.transform-row');
+        if (!traka || !red || reduce) return;
+
+        var uski = window.matchMedia('(max-width: 900px)');
+        var BRZINA = 0.036;      /* px/ms — ista kao CSS animacija na desktopu */
+        var PAUZA = 1200;        /* koliko miruje posle dodira, da inercija odradi svoje */
+        var id = null;
+        var poslednji = 0;
+        var pauzaDo = 0;
+
+        function frejm(t) {
+            var dt = poslednji ? Math.min(t - poslednji, 64) : 16.7;
+            poslednji = t;
+
+            if (t > pauzaDo) traka.scrollLeft += BRZINA * dt;
+
+            /* sadrzaj je udvostrucen, pa je skok za polovinu neprimetan */
+            var pola = red.scrollWidth / 2;
+            if (pola > 0) {
+                if (traka.scrollLeft >= pola) traka.scrollLeft -= pola;
+                else if (traka.scrollLeft < 1) traka.scrollLeft += pola;
+            }
+
+            id = requestAnimationFrame(frejm);
+        }
+
+        function odlozi() { pauzaDo = performance.now() + PAUZA; }
+
+        ['touchstart', 'touchmove', 'touchend', 'pointerdown', 'wheel']
+            .forEach(function (dog) {
+                traka.addEventListener(dog, odlozi, { passive: true });
+            });
+
+        function upali() {
+            if (id) return;
+            traka.scrollLeft = 1;
+            poslednji = 0;
+            id = requestAnimationFrame(frejm);
+        }
+
+        function ugasi() {
+            if (!id) return;
+            cancelAnimationFrame(id);
+            id = null;
+            traka.scrollLeft = 0;
+        }
+
+        function uskladi() { uski.matches ? upali() : ugasi(); }
+
+        uskladi();
+        if (uski.addEventListener) uski.addEventListener('change', uskladi);
+        else uski.addListener(uskladi);
+    })();
+
+    /* =====================================================
        Hamburger meni (telefon)
        ===================================================== */
     (function meni() {
