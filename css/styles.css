@@ -1543,15 +1543,32 @@ body.meni-otvoren .nav-toggle span:nth-child(3) {
     letter-spacing: -0.8px;
   }
 
-  .transform-track {
-    gap: 20px;
+  .transform-row {
+    animation: none;
+    width: max-content;
   }
 
-  /* zavese su na desktopu siroke koliko kartica (344px); na telefonu bi
-     dve takve prekrile ceo ekran i traka bi izgledala prazno */
+  /* Na telefonu traka prestaje da se vrti sama i postaje galerija koju
+     korisnik pomera prstom. Automatsko klizanje i rucni skrol se tuku —
+     prst bi se borio sa animacijom. */
+  .transform-track {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 20px;
+    padding-inline: 20px;
+    scrollbar-width: none;
+  }
+
+  .transform-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* zavese bi pokrivale kartice dok ih korisnik pomera */
   .transform-track::before,
   .transform-track::after {
-    width: 60px;
+    display: none;
   }
 
   /* .usluga.flip je specificniji od .usluga, pa mora i on izricito */
@@ -1559,10 +1576,22 @@ body.meni-otvoren .nav-toggle span:nth-child(3) {
     grid-template-columns: 1fr;
   }
 
+  /* 78% sirine: sledeca kartica uvek proviruje, pa se vidi da ima jos */
   .transform-card {
-    flex-basis: 280px;
-    height: 312px;
-    margin-right: 20px;
+    flex-basis: 78vw;
+    height: 340px;
+    margin-right: 14px;
+    scroll-snap-align: center;
+  }
+
+  .transform-card:last-child {
+    margin-right: 0;
+  }
+
+  /* duplikati postoje samo zbog beskonacne petlje; pri rucnom skrolu
+     bi bili isto sedam slika jos jednom */
+  .transform-card[aria-hidden="true"] {
+    display: none;
   }
 
   .usluge {
